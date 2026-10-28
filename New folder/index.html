@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnMate AI ✦ Ace your exams, no cap.</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app-container">
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR NAVIGATION
+    ═══════════════════════════════════════════ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand-logo">
+                <span class="brand-icon">🚀</span>
+                LearnMate
+                <span class="ai-tag">AI</span>
+            </div>
+            <button class="sidebar-close-btn" onclick="App.toggleMobileMenu()" aria-label="Close">&times;</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-label" style="margin-bottom:0.75rem">Main</div>
+            <ul class="nav-menu">
+                <li>
+                    <a class="nav-link active" data-view="dashboard" onclick="App.navigateTo('dashboard')">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">📊</span> Dashboard
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-view="weakness" onclick="App.navigateTo('weakness')">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">🎯</span> Weakness Detector
+                        </div>
+                        <span class="badge badge-danger" id="sidebar-weak-badge">2</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-view="study-plan" onclick="App.navigateTo('study-plan')">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">📅</span> AI Study Plan
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-view="quiz" onclick="App.navigateTo('quiz')">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">⚡</span> Quizzes & Rewards
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-view="syllabus" onclick="App.navigateTo('syllabus')">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">📚</span> Syllabus Tracker
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-view="rewards" onclick="App.navigateTo('rewards')">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">🎁</span> Rewards Store
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-view="chat" onclick="App.navigateTo('chat')">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">🤖</span> AI Tutor Chat
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-label" style="margin-top:1.5rem;margin-bottom:0.75rem">Vibe Check</div>
+            <ul class="nav-menu">
+                <li>
+                    <button class="nav-link" id="sound-toggle-btn" onclick="FXEngine.toggleSound()" style="width:100%;background:none;border:none;">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">🔊</span> FX Sound On
+                        </div>
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-link" id="ambient-focus-btn" onclick="FXEngine.toggleAmbientNoise('rain')" style="width:100%;background:none;border:none;">
+                        <div class="nav-link-left">
+                            <span class="nav-icon">🎧</span> Focus Audio
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="student-card" onclick="App.editProfileName()" title="Tap to edit your name">
+                <div class="student-avatar" id="student-avatar-display">🎓</div>
+                <div class="student-info">
+                    <div class="student-name" id="student-name-display">Alex Rivera</div>
+                    <div class="student-grade">STEM Track · <span style="color:var(--primary)">Locked In ✓</span></div>
+                </div>
+            </div>
+            <div style="margin-top:0.75rem;display:flex;gap:0.5rem;">
+                <button class="btn btn-xs btn-outline" onclick="App.toggleTheme()" id="theme-toggle-btn" style="flex:1;">🌙 Dark</button>
+                <button class="btn btn-xs btn-outline" onclick="App.resetAllDataConfirm()" title="Reset demo" style="flex:1;">🔄 Reset</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="App.toggleMobileMenu()"></div>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN WRAPPER
+    ═══════════════════════════════════════════ -->
+    <div class="main-wrapper">
+
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" onclick="App.toggleMobileMenu()" aria-label="Menu">☰</button>
+                <div class="header-greeting">
+                    Yo <strong id="header-user-name">Alex</strong> 👋 — Let's get this W today.
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="header-pill" title="Your Aura Points balance">
+                    <span>🪙</span>
+                    <span id="header-points-val">420 XP</span>
+                </div>
+                <div class="header-pill" title="Study streak days">
+                    <span>🔥</span>
+                    <span id="header-streak-val">4 Days</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Views -->
+        <main class="content-body">
+            <section id="dashboard-view"   class="view-section active-view"></section>
+            <section id="weakness-view"    class="view-section"></section>
+            <section id="study-plan-view"  class="view-section"></section>
+            <section id="quiz-view"        class="view-section"></section>
+            <section id="syllabus-view"    class="view-section"></section>
+            <section id="rewards-view"     class="view-section"></section>
+            <section id="chat-view"        class="view-section"></section>
+        </main>
+    </div>
+</div>
+
+<!-- Modals & Toasts -->
+<div id="modal-container"></div>
+<div id="toast-container"></div>
+<canvas id="fx-canvas"></canvas>
+
+<!-- Scripts (order matters) -->
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/weakness.js"></script>
+<script src="js/studyplan.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/syllabus.js"></script>
+<script src="js/rewards.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

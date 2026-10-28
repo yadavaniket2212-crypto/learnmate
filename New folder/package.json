@@ -1,0 +1,20 @@
+{
+  "name": "learnmate-ai",
+  "version": "1.0.0",
+  "description": "LearnMate AI - Adaptive Student Learning & Mastery Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "education",
+    "ai",
+    "student",
+    "quiz",
+    "study-plan",
+    "gamification"
+  ],
+  "author": "LearnMate Team",
+  "license": "MIT"
+}
+
